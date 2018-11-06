@@ -1,0 +1,45 @@
+
+<Widget>:
+    canvas.after:
+        Color:
+            rgba: 1,0,0,1
+        Line:
+            rectangle: self.x+1,self.y+1,self.width-1,self.height-1
+            dash_offset: 5
+            dash_length: 3
+
+<PomodoroUI>:
+    BoxLayout:
+        size: root.size
+        canvas.before:
+            Color:
+                rgba: 1,1,1,1
+            Rectangle:
+                size: self.size
+        orientation: "vertical"
+        RelativeLayout:
+            Image:
+                id: background_pic
+                size_hint: 1, 1
+                source: "resources/Tomato-Red-On-A-White-Background-Tomatoes-3418309.jpg"
+                pos_hint: { "center_x": 0.5, "center_y": 0.5 }
+            Label:
+                pos_hint: { "center_x": 0.5, "center_y": 0.5 }
+                size_hint: 1, 1
+                font_size: min(background_pic.height / 6, background_pic.width/6)
+                id: clock_text
+                text: root.time_str
+        BoxLayout:
+            size_hint: 1, 0.5
+            size_hint_max_y: 40
+            orientation: "horizontal"    
+            Button:
+                text: "Start"
+                on_press: root.on_timer_start()
+            Button:
+                text: "Stop"
+                on_press: root.on_timer_stop()
+            Button:
+                text: "Break"
+                on_press: root.on_break_start()
+                    
